@@ -29,6 +29,7 @@ export class Step1Component {
         const firstColor = currentModel.colors[0];
         if (firstColor) {
           this.carColor.setValue(firstColor.code);
+          this.configuratorService.currentCarColor.set(firstColor);
         }
       }
     });
@@ -38,7 +39,7 @@ export class Step1Component {
       const currentColor = this.configuratorService
         .currentCar()
         ?.colors.find((color) => color.code === c);
-
+      this.configuratorService.currentCarColor.set(currentColor);
       if (currentColor && currentCar) {
         const imageUrl = `https://interstate21.com/tesla-app/images/${currentCar.code}/${currentColor.code}.jpg`;
         this.configuratorService.currentCarImage.set(imageUrl);

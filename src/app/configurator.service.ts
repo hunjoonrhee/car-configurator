@@ -15,6 +15,7 @@ export class ConfiguratorService {
   );
 
   readonly currentCar = signal<CarModel | undefined>(undefined);
+  readonly currentCarColor = signal<Color | undefined>(undefined);
   readonly currentCarOptions = signal<CarOptions | undefined>(undefined);
   readonly currentCarConfig = signal<Config | undefined>(undefined);
   readonly currentCarHitchYokeOptions = signal<{
@@ -45,5 +46,13 @@ export class ConfiguratorService {
       this.currentCarOptions()
       ? true
       : false;
+  });
+  readonly currentCarTotalCost = computed(() => {
+    const basicPrice = this.currentCarConfig()?.price || 0;
+    const colorPrice = this.currentCarColor()?.price || 0;
+    const yokePrice = this.currentCarHitchYokeOptions().yoke ? 1000 : 0;
+    const towHitchPrice = this.currentCarHitchYokeOptions().towHitch ? 1000 : 0;
+
+    return basicPrice + colorPrice + yokePrice + towHitchPrice;
   });
 }

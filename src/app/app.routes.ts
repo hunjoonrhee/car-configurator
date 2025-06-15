@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { Step1Component } from './step1/step1.component';
 import { Step2Component } from './step2/step2.component';
 import { step2Guard } from './step2/step2.guard';
+import { Step3Component } from './step3/step3.component';
+import { step3Guard } from './step3/step3.guard';
 
 export const routes: Routes = [
   {
@@ -17,5 +19,10 @@ export const routes: Routes = [
     path: 'step2',
     component: Step2Component,
     canActivate: [step2Guard],
+  },
+  {
+    path: 'step3',
+    component: Step3Component,
+    canActivate: [step3Guard],
   },
 ];

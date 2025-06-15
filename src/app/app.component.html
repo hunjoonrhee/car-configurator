@@ -6,6 +6,8 @@
   >
     Step 2
   </button>
-  <button routerLink="step3">Step 3</button>
+  <button routerLink="step3" [disabled]="!configuratorService.isStep3ready()">
+    Step 3
+  </button>
 </div>
 <router-outlet />
