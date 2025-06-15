@@ -25,7 +25,8 @@
     <div class="col-sm-6">
       <b>Yoke Steering Wheel</b>
     </div>
-    @if(service.currentCarHitchYokeOptions().yoke) {
+    @if(service.currentCarOptions()?.yoke &&
+    service.currentCarHitchYokeOptions().yoke) {
     <div class="col-sm-6">$1,000.00</div>
     }
   </div>
@@ -34,7 +35,8 @@
     <div class="col-sm-6">
       <b>Tow Hitch Package</b>
     </div>
-    @if(service.currentCarHitchYokeOptions().towHitch) {
+    @if(service.currentCarOptions()?.towHitch
+    &&service.currentCarHitchYokeOptions().towHitch) {
     <div class="col-sm-6">$1,000.00</div>
     }
   </div>

@@ -34,9 +34,14 @@ export class ConfiguratorService {
     );
     return options;
   }
-  public setConfig(id: number) {
+  public setConfig(configId: number) {
     if (this.currentCarOptions()) {
-      const config = this.currentCarOptions()!.configs.find((c) => c.id === id);
+      console.log(typeof this.currentCarOptions()!.configs[0].id);
+      console.log(typeof configId);
+      const config = this.currentCarOptions()!.configs.find(
+        (c) => c.id === configId
+      );
+      console.log(config);
       this.currentCarConfig.set(config);
     }
   }

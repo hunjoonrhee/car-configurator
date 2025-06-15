@@ -3,7 +3,7 @@ Model:
 <select [formControl]="carModel">
   <option [value]="0">Choose...</option>
   @for(model of allModels; track model.code;) {
-  <option>{{ model.description }}</option>
+  <option [value]="model.description">{{ model.description }}</option>
   }
 </select>
 

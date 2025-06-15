@@ -14,14 +14,15 @@ export class Step2Component {
   service = inject(ConfiguratorService);
   readonly options = this.service.currentCarOptions();
 
-  readonly configControl = new FormControl<string>('');
+  readonly configControl = new FormControl<string>(
+    this.service.currentCarConfig()?.id.toString() || ''
+  );
 
   constructor() {
-    this.configControl.valueChanges.subscribe((idStr) => {
-      console.log(idStr);
-      if (idStr) {
-        const id = parseInt(idStr);
-        this.service.setConfig(id);
+    this.configControl.valueChanges.subscribe((id) => {
+      if (id) {
+        console.log(typeof id);
+        this.service.setConfig(parseInt(id));
       }
     });
   }

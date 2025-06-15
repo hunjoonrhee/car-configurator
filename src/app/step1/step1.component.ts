@@ -14,8 +14,12 @@ export class Step1Component {
   readonly configuratorService = inject(ConfiguratorService);
   readonly allModels = this.configuratorService.allModels();
 
-  readonly carModel = new FormControl<string>('');
-  readonly carColor = new FormControl<string>('');
+  readonly carModel = new FormControl<string>(
+    this.configuratorService.currentCar()?.description || ''
+  );
+  readonly carColor = new FormControl<string>(
+    this.configuratorService.currentCarColor()?.code || ''
+  );
 
   constructor() {
     this.carModel.valueChanges.subscribe((m) => {
@@ -31,6 +35,7 @@ export class Step1Component {
           this.carColor.setValue(firstColor.code);
           this.configuratorService.currentCarColor.set(firstColor);
         }
+        this.configuratorService.currentCarConfig.set(undefined);
       }
     });
 
