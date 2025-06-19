@@ -1,13 +1,6 @@
 <div class="button-group">
   <button routerLink="step1">Step 1</button>
-  <button
-    routerLink="step2"
-    [disabled]="!configuratorService.isCarModelSelected()"
-  >
-    Step 2
-  </button>
-  <button routerLink="step3" [disabled]="!configuratorService.isStep3ready()">
-    Step 3
-  </button>
+  <button routerLink="step2">Step 2</button>
+  <button routerLink="step3">Step 3</button>
 </div>
 <router-outlet />

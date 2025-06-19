@@ -12,7 +12,7 @@ import { ConfiguratorService } from '../configurator.service';
 })
 export class Step3Component {
   readonly service = inject(ConfiguratorService);
-  readonly currentCarModel = this.service.currentCar();
-  readonly currentCarConfig = this.service.currentCarConfig();
-  readonly currentCarOptions = this.service.currentCarOptions();
+  // readonly currentCarModel = this.service.currentCar();
+  // readonly currentCarConfig = this.service.currentCarConfig();
+  // readonly currentCarOptions = this.service.currentCarOptions();
 }

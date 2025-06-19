@@ -12,33 +12,33 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class Step2Component {
   service = inject(ConfiguratorService);
-  readonly options = this.service.currentCarOptions();
+  // readonly options = this.service.currentCarOptions();
 
-  readonly configControl = new FormControl<string>(
-    this.service.currentCarConfig()?.id.toString() || ''
-  );
+  // readonly configControl = new FormControl<string>(
+  //   this.service.currentCarConfig()?.id.toString() || ''
+  // );
 
-  constructor() {
-    this.configControl.valueChanges.subscribe((id) => {
-      if (id) {
-        console.log(typeof id);
-        this.service.setConfig(parseInt(id));
-      }
-    });
-  }
+  // constructor() {
+  //   this.configControl.valueChanges.subscribe((id) => {
+  //     if (id) {
+  //       console.log(typeof id);
+  //       this.service.setConfig(parseInt(id));
+  //     }
+  //   });
+  // }
 
-  toggleTowHitch(event: Event) {
-    const checked = (event.target as HTMLInputElement).checked;
-    this.service.currentCarHitchYokeOptions.update((prev) => ({
-      ...prev,
-      towHitch: checked,
-    }));
-  }
-  toggleYoke(event: Event) {
-    const checked = (event.target as HTMLInputElement).checked;
-    this.service.currentCarHitchYokeOptions.update((prev) => ({
-      ...prev,
-      yoke: checked,
-    }));
-  }
+  // toggleTowHitch(event: Event) {
+  //   const checked = (event.target as HTMLInputElement).checked;
+  //   this.service.currentCarHitchYokeOptions.update((prev) => ({
+  //     ...prev,
+  //     towHitch: checked,
+  //   }));
+  // }
+  // toggleYoke(event: Event) {
+  //   const checked = (event.target as HTMLInputElement).checked;
+  //   this.service.currentCarHitchYokeOptions.update((prev) => ({
+  //     ...prev,
+  //     yoke: checked,
+  //   }));
+  // }
 }
