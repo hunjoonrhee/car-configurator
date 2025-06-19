@@ -2,7 +2,7 @@ import { computed, inject, Injectable, signal, Signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CarModel, CarOptions, Color, Config } from './models.type';
-import { firstValueFrom, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +12,26 @@ export class ConfiguratorService {
   readonly allModels$: Observable<CarModel[]> =
     this.http.get<CarModel[]>('models');
 
-  // readonly currentCar = signal<CarModel | undefined>(undefined);
-  // readonly currentCarColor = signal<Color | undefined>(undefined);
+  readonly currentCarSubject = new BehaviorSubject<CarModel | null>(null);
+  readonly currentCar$ = this.currentCarSubject.asObservable();
+  readonly currentCarColorSubject = new BehaviorSubject<Color | null>(null);
+  readonly currentCarColor$ = this.currentCarColorSubject.asObservable();
+  readonly currentCarImageSubject = new BehaviorSubject<string | null>(null);
+  readonly currentCarImage$ = this.currentCarImageSubject.asObservable();
+
+  // ✅ setter
+  setCurrentCar(car: CarModel) {
+    this.currentCarSubject.next(car);
+  }
+
+  setCurrentCarColor(color: Color) {
+    this.currentCarColorSubject.next(color);
+  }
+
+  setCurrentCarImage(url: string) {
+    this.currentCarImageSubject.next(url);
+  }
+
   // readonly currentCarOptions = signal<CarOptions | undefined>(undefined);
   // readonly currentCarConfig = signal<Config | undefined>(undefined);
   // readonly currentCarHitchYokeOptions = signal<{
