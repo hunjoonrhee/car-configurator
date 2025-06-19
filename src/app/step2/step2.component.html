@@ -17,11 +17,7 @@ Config: @if(options) {
 
 <div>
   @if(options?.towHitch) { Tow hitch?
-  <input
-    type="checkbox"
-    [checked]="service.currentCarHitchYokeOptions().towHitch"
-    (change)="toggleTowHitch($event)"
-  />
+  <input type="checkbox" [formControl]="towHitchControl" />
   }
 
   <br />
