@@ -1,23 +1,21 @@
 import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 import { ConfiguratorService } from '../configurator.service';
+import { firstValueFrom } from 'rxjs';
 
 export const step2Guard: CanActivateFn = async (route, state) => {
   const configuratorService = inject(ConfiguratorService);
-  return true;
-  // const isCarModelSelected = configuratorService.isCarModelSelected();
-
-  // if (!isCarModelSelected) {
-  //   return false;
-  // } else {
-  //   const currentCarModel = configuratorService.currentCar();
-  //   const options = await configuratorService.getModelOptions(
-  //     currentCarModel!.code
-  //   );
-  //   console.log(options);
-  //   if (options) {
-  //     configuratorService.currentCarOptions.set(options);
-  //   }
-  //   return true;
-  // }
+  const isReady = await firstValueFrom(configuratorService.isStep2ready$);
+  if (!isReady) {
+    return false;
+  } else {
+    const currentCarModel = configuratorService.currentCarSubject.value;
+    const options = configuratorService.getModelOptions(currentCarModel!.code);
+    if (options) {
+      options.subscribe((opt) =>
+        configuratorService.setCurrentModelOptions(opt)
+      );
+    }
+    return true;
+  }
 };

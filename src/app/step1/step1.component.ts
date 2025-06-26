@@ -18,8 +18,7 @@ export class Step1Component implements OnInit {
     this.configuratorService.currentCarSubject.getValue()?.description || ''
   );
   readonly carColor = new FormControl<string>(
-    this.configuratorService.currentCarColorSubject.getValue()?.description ||
-      ''
+    this.configuratorService.currentCarColorSubject.getValue()?.code || ''
   );
 
   ngOnInit(): void {
@@ -30,7 +29,7 @@ export class Step1Component implements OnInit {
           console.log(selectedModel);
           this.configuratorService.setCurrentCar(selectedModel);
           const firstColor = selectedModel.colors[0];
-          if (firstColor) {
+          if (firstColor && !this.carColor.value) {
             this.configuratorService.setCurrentCarColor(firstColor);
             this.carColor.setValue(firstColor.code);
           }

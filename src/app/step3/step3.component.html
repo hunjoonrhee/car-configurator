@@ -1,32 +1,36 @@
 <h1>Step 3: Summary</h1>
-<!-- <h3>Your {{ currentCarModel?.description }}</h3>
+<h3>Your {{ (currentCarModel$ | async)?.description }}</h3>
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
       <div>
-        <b>{{ currentCarConfig?.description }}</b>
+        <b>{{ (currentCarConfig$ | async)?.description }}</b>
       </div>
       <div>
-        Range: {{ currentCarConfig?.range }} miles - Max speed:
-        {{ currentCarConfig?.speed }}
+        Range: {{ (currentCarConfig$ | async)?.range }} miles - Max speed:
+        {{ (currentCarConfig$ | async)?.speed }}
       </div>
     </div>
-    <div class="col-sm-6">{{ currentCarConfig?.price | currency : "USD" }}</div>
+    <div class="col-sm-6">
+      {{ (currentCarConfig$ | async)?.price | currency : "USD" }}
+    </div>
   </div>
 
   <div class="row">
     <div class="col-sm-6">
-      <b>{{ service.currentCarColor()?.description }}</b>
+      <b>{{ (currentCarColor$ | async)?.description }}</b>
     </div>
-    <div class="col-sm-6">$6,500.00</div>
+    <div class="col-sm-6">
+      {{ (currentCarColor$ | async)?.price | currency : "USD" }}
+    </div>
   </div>
 
   <div class="row">
     <div class="col-sm-6">
       <b>Yoke Steering Wheel</b>
     </div>
-    @if(service.currentCarOptions()?.yoke &&
-    service.currentCarHitchYokeOptions().yoke) {
+    @if((currentModelOptions$ | async)?.yoke && (currentCarHitchYoke$ |
+    async)?.yoke) {
     <div class="col-sm-6">$1,000.00</div>
     }
   </div>
@@ -35,8 +39,8 @@
     <div class="col-sm-6">
       <b>Tow Hitch Package</b>
     </div>
-    @if(service.currentCarOptions()?.towHitch
-    &&service.currentCarHitchYokeOptions().towHitch) {
+    @if((currentModelOptions$ | async)?.towHitch &&(currentCarHitchYoke$ |
+    async)?.towHitch) {
     <div class="col-sm-6">$1,000.00</div>
     }
   </div>
@@ -47,8 +51,8 @@
       <b>TOTAL COST</b>
     </div>
     <div class="col-sm-6">
-      {{ service.currentCarTotalCost() | currency : "USD" }}
+      {{ currentCarTotalCost$ | async | currency : "USD" }}
     </div>
   </div>
   <hr />
-</div> -->
+</div>

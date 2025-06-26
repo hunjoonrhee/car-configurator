@@ -8,6 +8,9 @@ Model:
 </select>
 
 Color:
+<pre>{{
+  configuratorService.currentCarColorSubject.getValue()?.description
+}}</pre>
 <select [formControl]="carColor">
   <ng-container *ngIf="configuratorService.currentCar$ | async as car">
     @for(color of car.colors; track color.code) {
